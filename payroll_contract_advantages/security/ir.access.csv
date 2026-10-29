@@ -1,0 +1,5 @@
+id,name,model_id,group_id/id,operation,domain
+access_hr_contract_advantage_template_hr_user,payroll_contract_advantages.hr.contract.advantage.template,hr.contract.advantage.template,hr.group_hr_user,r,
+access_hr_contract_advantage_template_payroll_user,payroll_contract_advantages.hr.contract.advantage.template,hr.contract.advantage.template,payroll.group_payroll_user,crud,
+access_hr_contract_advantage_hr_user,payroll_contract_advantages.hr.contract.advantage,hr.contract.advantage,hr.group_hr_user,r,
+access_hr_contract_advantage_payroll_user,payroll_contract_advantages.hr.contract.advantage,hr.contract.advantage,payroll.group_payroll_user,crud,
