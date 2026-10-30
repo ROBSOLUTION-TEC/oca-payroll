@@ -312,7 +312,9 @@ class HrPayslip(models.Model):
         ):
             day_from = datetime.combine(date_from, time.min)
             day_to = datetime.combine(date_to, time.max)
-            day_contract_start = datetime.combine(contract.date_start, time.min)
+            day_contract_start = datetime.combine(
+                self._get_contract_period_start(contract), time.min
+            )
             # Support for the hr_public_holidays module.
             contract = contract.with_context(
                 employee_id=self.employee_id.id, exclude_public_holidays=True
@@ -327,6 +329,13 @@ class HrPayslip(models.Model):
             attendances = self._compute_worked_days(contract, day_from, day_to)
             res.append(attendances)
         return res
+
+    @api.model
+    def _get_contract_period_start(self, contract):
+        """First day of the given contract (hr.version) considered in the
+        worked days computation. Hook for localizations that compute one
+        payslip line set over several versions of the same contract."""
+        return contract.date_start
 
     def _compute_leave_days(self, contract, day_from, day_to):
         """
